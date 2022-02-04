@@ -1,7 +1,7 @@
 word = 'light'
 user_input = ''
 result = None
-guess = 'hltgi'
+guess = 'hitgt'
 
 # guess = input('What is your first guess? ')
 
@@ -22,17 +22,25 @@ for character in word:
     word_char.append(character)
 print(f'The word: {word_char}')
 
-results = [index for index, (guess_letter, word_letter) in enumerate(zip(guess_char, word_char)) if guess_letter == word_letter]
-print(f'Matching indices: {results}')
 
-for i in guess_char:
-    if i in word_char:
-        nonMatchIndex = guess_char.index(i)
-        print(f'Non-matching letters: {i}')
-print(f'Non-matching letters: {nonMatchIndex}')
+exactMatch = [index for index, (guess_letter, word_letter) in enumerate(zip(guess_char, word_char)) if guess_letter == word_letter]
+print(f'Exact match indices: {exactMatch}')
 
-results = [index for index, (guess_letter, word_letter) in enumerate(zip(guess_char, word_char)) if guess_letter != word_letter]
-print(f'Non-matching indices: {results}')
+new_string = ''
+
+for match in exactMatch:
+    guess_char.append(match)
+    print(guess_char)
+
+
+# for i in guess_char:
+#     if i in word_char:
+#         nonMatchIndex = guess_char.index(i)
+#         print(f'Non-matching letters: {i}')
+# print(f'Non-matching letters: {nonMatchIndex}')
+
+# results = [index for index, (guess_letter, word_letter) in enumerate(zip(guess_char, word_char)) if guess_letter != word_letter]
+# print(f'Non-matching indices: {results}')
 
 
 for i in guess_char:
