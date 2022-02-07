@@ -1,7 +1,7 @@
 word = 'light'
 user_input = ''
 result = None
-guess = 'hztgo'
+guess = 'tiger'
 
 # guess = input('What is your first guess? ')
 
@@ -21,17 +21,21 @@ for character in word:
     word_char.append(character)
 print(f'The word: {word_char}')
 
-exactMatch = [index for index, (guess_letter, word_letter) in enumerate(zip(guess_char, word_char)) if guess_letter == word_letter]
-print(f'Exact match indices: {exactMatch}')
-
 def letter_in_word(guess, word):
-    for i in guess:
-        if i in word:
-            print(f'{i} is in the word')
+    for guess_letter in guess:
+        if guess_letter in word:
+            print(f'{guess_letter} is in the word')
         else:
-            print(f'{i} is not in the word')
+            print(f'{guess_letter} is not in the word')
+        for word_letter in word:
+            if guess_letter == word_letter:
+                
+                print(f'{guess_letter} is in correct position!')
 
 letter_in_word(guess_char, word_char)
+
+# exactMatch = [index for index, (guess_letter, word_letter) in enumerate(zip(guess_char, word_char)) if guess_letter == word_letter]
+# print(exactMatch)
 
 # if guess_char[0] == word_char[0]:
 #     print(f'Match!')
