@@ -1,3 +1,6 @@
+# check to see if two of the same character is in the guess
+# stacking the result summary (needs list of lists - Andres)
+
 word = 'digit'
 user_input = ''
 result = None
@@ -24,8 +27,8 @@ def letter_in_word(guess, word, outputGuess):
             correctCount += 1
         index += 1
     print(outputGuess)
-    if correctCount == len(word):
-        gameOn == False
+    return correctCount != len(word)
+
 
 while gameOn == True:
     guess = input('What is your first guess? ')
@@ -42,7 +45,7 @@ while gameOn == True:
         word_char.append(character)
     print(f'The word: {word_char}')
 
-    letter_in_word(guess_char, word_char, output_lst)
+    gameOn = letter_in_word(guess_char, word_char, output_lst)
 
 # exactMatch = [index for index, (guess_letter, word_letter) in enumerate(zip(guess_char, word_char)) if guess_letter == word_letter]
 # print(exactMatch)
