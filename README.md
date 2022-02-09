@@ -1,4 +1,3 @@
 # wordle
-Attempt to make text-version of wordle
 
-Test
+My first attempt to make a text version of the Wordle game.
