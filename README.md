@@ -1,3 +1,2 @@
 # wordle
-<<<<<<< HEAD
-Attempt to make text-version of wordle
+Attempt to make text-version of the popular wordle game.
