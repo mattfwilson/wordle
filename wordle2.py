@@ -1,27 +1,27 @@
 # check to see if two of the same character is in the guess
-# stacking the result summary (needs list of lists - Andres)
+# stacking the result summary (needs list of lists -Andres)
 
 wordle = 'plebs'
 userInput = ''
 guess = ''
 gameContinue = True
-guessCount = 0 
+guessCount = 1
 
 def checkGuess(guess, word, outputGuess, count):
     guess_index = 0
+    word_index = 0
+    correctCount = 0
 
-    while guess_index < len(guess): # check if guess letter exists in word at all
+    while guess_index < len(guess):                 # create var with list character/index for guess
         guessLetter = guess[guess_index]
-        if guessLetter in word:
+        if guessLetter in word:                     # check to see a guess character in the wordle
             outputGuess[guess_index] = '(' + guess[guess_index] + ')'
         guess_index += 1
 
-    word_index = 0
-    correctCount = 0
-    while word_index < len(word): # check if position of letter match
+    while word_index < len(word):                   # create vars with list characters/index for guess AND wordle
         wordLetterPos = word[word_index]
         guessLetterPos = guess[word_index]
-        if guessLetterPos == wordLetterPos:
+        if guessLetterPos == wordLetterPos:         # check if positions of guess characters and wordle characters matche
             outputGuess[word_index] = '[' + guess[word_index] + ']'
             correctCount += 1
         word_index += 1
@@ -29,7 +29,7 @@ def checkGuess(guess, word, outputGuess, count):
     count += 1
     return correctCount != len(word)
 
-while gameContinue == True:
+while gameContinue == True:                         # keeps game running while user still has guesses
     if guessCount <= 6:
         guess = input('What is your first guess? ')
         word_char = []
