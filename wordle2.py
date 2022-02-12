@@ -5,7 +5,7 @@
 from PyDictionary import PyDictionary
 
 lookup = PyDictionary()
-wordle = 'plebs'
+wordle = 'sushi'
 userInput = ''
 guess = 'guess'
 gameContinue = True
