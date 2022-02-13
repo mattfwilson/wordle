@@ -2,9 +2,9 @@
 # stacking the result summary (needs list of lists -Andres)
 # Add in conditional check for if the guess word is < or > 5 characters
 
-# from PyDictionary import PyDictionary
+from PyDictionary import PyDictionary
 
-# lookup = PyDictionary()
+lookup = PyDictionary()
 wordle = 'sushi'
 userInput = ''
 guess = 'guess'
@@ -23,14 +23,12 @@ def checkGuess(guess, word, outputGuess, count):
         if guessLetter in word: # check to see a guess character in the wordle
             outputGuess[guess_index] = '(' + guess[guess_index] + ')'
         guess_index += 1
-
     while word_index < len(word): # create vars with list characters/index for guess AND wordle
         wordLetterPos = word[word_index]
         guessLetterPos = guess[word_index]
         if guessLetterPos == wordLetterPos: # check if positions of guess characters and wordle characters match
             outputGuess[word_index] = '[' + guess[word_index] + ']'
             correctCount += 1
-            counter += 1
         word_index += 1
     print(f'Guess {guessCount}: {outputGuess}')
     guessCount += 1
@@ -51,8 +49,13 @@ while gameContinue == True: # keeps game running while user still has guesses
             word_char.append(character)
 
         gameContinue = checkGuess(guess_char, word_char, output_lst, guessCount)
+        if gameContinue == False:
+            print(f'You won! The word was "{wordle}"!')
+            dictResult = lookup.meaning(f'{wordle}')
+            print(f'Defintion of {wordle}: \n{dictResult}')
+            quit()
     elif guessCount > 6:
         print(f'Game over! You used all 6 guesses. The word was "{wordle}"!')
-        # dictResult = lookup.meaning(f'{wordle}')
-        # print(f'Defintion of {wordle}: \n{dictResult}')
+        dictResult = lookup.meaning(f'{wordle}')
+        print(f'Defintion of {wordle}: \n{dictResult}')
         quit()
