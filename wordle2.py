@@ -10,6 +10,7 @@ userInput = ''
 guess = 'guess'
 gameContinue = True
 guessCount = 1
+counter = 0
 
 def checkGuess(guess, word, outputGuess, count):
     global guessCount
@@ -29,6 +30,7 @@ def checkGuess(guess, word, outputGuess, count):
         if guessLetterPos == wordLetterPos: # check if positions of guess characters and wordle characters match
             outputGuess[word_index] = '[' + guess[word_index] + ']'
             correctCount += 1
+            counter += 1
         word_index += 1
     print(f'Guess {guessCount}: {outputGuess}')
     guessCount += 1
