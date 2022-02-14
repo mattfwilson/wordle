@@ -12,6 +12,11 @@ gameContinue = True
 guessCount = 1
 counter = 0
 
+with open("5-letter-words.txt", "r") as possibleWords: # get/create list out of 5-letter-words.txt
+    file_lines = possibleWords.read()
+    wordList = file_lines.split("\n")
+print(wordList)
+
 def checkGuess(guess, word, outputGuess, count):
     global guessCount
     guess_index = 0
@@ -37,6 +42,11 @@ def checkGuess(guess, word, outputGuess, count):
 while gameContinue == True: # keeps game running while user still has guesses
     if guessCount <= 6:
         guess = input(f'What is your guess? ({guessCount}/6) ')
+        while len(guess) < 5 or len(guess) > 5: # checks to make sure the guess is 5 characters long
+            print(f'Your guess word has to be five characters.')
+            guess = input(f'What is your guess? ({guessCount}/6) ')
+
+        guess = input(f'What is your guess? ({guessCount}/6) ')
         word_char = []
         guess_char = []
         output_lst = []
@@ -51,11 +61,11 @@ while gameContinue == True: # keeps game running while user still has guesses
         gameContinue = checkGuess(guess_char, word_char, output_lst, guessCount)
         if gameContinue == False:
             print(f'You won! The word was "{wordle}"!')
-            dictResult = lookup.meaning(f'{wordle}')
-            print(f'Defintion of {wordle}: \n{dictResult}')
+            # dictResult = lookup.meaning(f'{wordle}')
+            # print(f'Defintion of {wordle}: \n{dictResult}')
             quit()
     elif guessCount > 6:
         print(f'Game over! You used all 6 guesses. The word was "{wordle}"!')
-        dictResult = lookup.meaning(f'{wordle}')
-        print(f'Defintion of {wordle}: \n{dictResult}')
+        # dictResult = lookup.meaning(f'{wordle}')
+        # print(f'Defintion of {wordle}: \n{dictResult}')
         quit()
