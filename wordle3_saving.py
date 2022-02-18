@@ -3,6 +3,7 @@
 # stacking the result summary (needs list of lists -Andres)
 # Add in conditional check for if the guess word is < or > 5 characters
 
+from multiprocessing.sharedctypes import Value
 import random
 import json
 
@@ -11,7 +12,7 @@ userInput = ''
 guess = 'guess'
 gameContinue = True
 guessCount = 1
-record = {"wins": 0, "losses": 0}
+record = {}
 
 # validates guesses and outputs results
 def checkGuess(guess, word, outputGuess, count):
@@ -41,7 +42,7 @@ save = open('records.json', 'r')
 record = save.read()
 save.close()
 print(record)
-print(f'Wins: {record["wins"]} | Losses: {record["losses"]}')
+print(record["wins"])
 
 # loads words list and generates random selection
 with open("test_words.txt", "r") as possibleWords: # get/create list out of 5-letter-words.txt
@@ -79,7 +80,7 @@ while gameContinue == True:
             quit()
     elif guessCount > 6:
         print(f'Game over! You used all 6 guesses. The correct word was "{wordle}"!')
-        record["losses"] += 1
+        record['losses'] += 1
         save = open('records.json', 'w')
         save.write(record)
         save.close()
