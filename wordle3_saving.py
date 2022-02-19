@@ -41,8 +41,12 @@ def checkGuess(guess, word, outputGuess, count):
 save = open('records.json', 'r')
 record = save.read()
 save.close()
+
+my_dict = {"one": 1,"two":2,"three":3,"four":4}
+
+for item in my_dict:
+    print("Key : {} , Value : {}".format(item,my_dict[item]))
 print(record)
-print(record["wins"])
 
 # loads words list and generates random selection
 with open("test_words.txt", "r") as possibleWords: # get/create list out of 5-letter-words.txt
