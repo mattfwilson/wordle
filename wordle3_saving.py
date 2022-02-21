@@ -37,15 +37,8 @@ def checkGuess(guess, word, outputGuess, count):
     guessCount += 1
     return correctCount != len(word)
 
-# loads wins/losses from json
-save = open('records.json', 'r')
-record = save.read()
-save.close()
-
-my_dict = {"one": 1,"two":2,"three":3,"four":4}
-
-for item in my_dict:
-    print("Key : {} , Value : {}".format(item,my_dict[item]))
+with open('records.json', 'r') as save:
+     record = json.load(save)
 print(record)
 
 # loads words list and generates random selection
@@ -78,7 +71,8 @@ while gameContinue == True:
             print(f'You won! You figured out the word was "{wordle}"!')
             record["wins"] += 1
             save = open('records.json', 'w')
-            save.write(record)
+            json.dumps(save)
+
             save.close()
             print(f'Wins: {record["wins"]} | Losses: {record["losses"]}')
             quit()
@@ -86,7 +80,7 @@ while gameContinue == True:
         print(f'Game over! You used all 6 guesses. The correct word was "{wordle}"!')
         record['losses'] += 1
         save = open('records.json', 'w')
-        save.write(record)
+        json.dumps(save)
         save.close()
         print(f'Wins: {record["wins"]} | Losses: {record["losses"]}')
         quit()
