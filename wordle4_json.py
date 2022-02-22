@@ -39,7 +39,7 @@ def check_guess(guess, word, output_guess):
 # loads historical record from external json file
 with open('records.json', 'r') as save:
      RECORD = json.load(save)
-print(RECORD)
+print(f'Wins: {RECORD["wins"]} | Losses: {RECORD["losses"]}')
 
 # loads external words list and randomly selects word from it
 with open("test_words.txt", "r") as possible_words: # get/create list out of 5-letter-words.txt
@@ -68,16 +68,16 @@ while CONTINUE == True:
         if CONTINUE == False:
             print(f'You won! You figured out the word was "{WORDLE}"!')
             RECORD["wins"] += 1
-            save = open('records.json', 'w')
-            json.dumps(save)
-            save.close()
+            with open('records.json', 'w') as save:
+                json.dump(RECORD, save)
             print(f'Wins: {RECORD["wins"]} | Losses: {RECORD["losses"]}')
             quit()
     elif GUESS_COUNT > 6:
         print(f'Game over! You used all 6 guesses. The correct word was "{WORDLE}"!')
         RECORD['losses'] += 1
-        save = open('records.json', 'w')
-        json.dumps(save)
-        save.close()
+        with open('records.json', 'w') as save:
+            json.dump(RECORD, save)
         print(f'Wins: {RECORD["wins"]} | Losses: {RECORD["losses"]}')
         quit()
+
+# {"wins": 10, "losses": 100}
