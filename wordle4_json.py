@@ -8,12 +8,12 @@ import random
 import json
 
 WORDLE = ''
-GUESS = 'GUESS'
+GUESS = ''
 CONTINUE = True
 GUESS_COUNT = 1
 RECORD = {}
 
-# validates guesses and outputs results
+# function to validate guesses and outputs results
 def check_guess(guess, word, output_guess):
     global GUESS_COUNT
     guess_index = 0
@@ -36,17 +36,18 @@ def check_guess(guess, word, output_guess):
     GUESS_COUNT += 1
     return correct_count != len(word)
 
+# loads historical record from external json file
 with open('records.json', 'r') as save:
      RECORD = json.load(save)
 print(RECORD)
 
-# loads words list and generates random selection
-with open("test_words.txt", "r") as possibleWords: # get/create list out of 5-letter-words.txt
-        file_lines = possibleWords.read()
-        wordList = file_lines.split("\n")
-        WORDLE = random.choice(wordList)
+# loads external words list and randomly selects word from it
+with open("test_words.txt", "r") as possible_words: # get/create list out of 5-letter-words.txt
+        file_lines = possible_words.read()
+        word_list = file_lines.split("\n")
+        WORDLE = random.choice(word_list)
 
-# keeps game running while user still has guesses
+# continue running game while user still has available guesses
 while CONTINUE == True:
     if GUESS_COUNT <= 6:
         while len(GUESS) < 5 or len(GUESS) > 5: # checks to make sure the GUESS is 5 characters long
@@ -60,18 +61,15 @@ while CONTINUE == True:
         for char in GUESS:
             guess_char.append(char)
             output_lst.append(char)
-
         for char in WORDLE:
             word_char.append(char)
 
         CONTINUE = check_guess(guess_char, word_char, output_lst)
-
         if CONTINUE == False:
             print(f'You won! You figured out the word was "{WORDLE}"!')
             RECORD["wins"] += 1
             save = open('records.json', 'w')
             json.dumps(save)
-
             save.close()
             print(f'Wins: {RECORD["wins"]} | Losses: {RECORD["losses"]}')
             quit()
