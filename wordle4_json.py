@@ -2,7 +2,6 @@
 # check to see if two of the same character is in the GUESS
 # stacking the result summary (needs list of lists -Andres)
 # add in conditional check for if the GUESS word is < or > 5 characters
-# fix json loading/saving
 
 import random
 import json
@@ -50,28 +49,33 @@ with open("test_words.txt", "r") as possible_words: # get/create list out of 5-l
 # continue running game while user still has available guesses
 while CONTINUE == True:
     if GUESS_COUNT <= 6:
-        while len(GUESS) < 5 or len(GUESS) > 5: # checks to make sure the GUESS is 5 characters long
+        if len(GUESS) < 5 or len(GUESS) > 5: # checks to make sure the GUESS is 5 characters long
             print(f'Your GUESS word has to be five characters.')
             GUESS = input(f'What is your GUESS? ({GUESS_COUNT}/6) ')
-        GUESS = input(f'What is your GUESS? ({GUESS_COUNT}/6) ')
-        word_char = []
-        guess_char = []
-        output_lst = []
+        elif len(GUESS) > 5:
+            print(f'Your GUESS word has to be five characters.')
+            GUESS = input(f'What is your GUESS? ({GUESS_COUNT}/6) ')
+        else:
+            GUESS = input(f'What is your GUESS? ({GUESS_COUNT}/6) ')
+        
+            word_char = []
+            guess_char = []
+            output_lst = []
 
-        for char in GUESS:
-            guess_char.append(char)
-            output_lst.append(char)
-        for char in WORDLE:
-            word_char.append(char)
+            for char in GUESS:
+                guess_char.append(char)
+                output_lst.append(char)
+            for char in WORDLE:
+                word_char.append(char)
 
-        CONTINUE = check_guess(guess_char, word_char, output_lst)
-        if CONTINUE == False:
-            print(f'You won! You figured out the word was "{WORDLE}"!')
-            RECORD["wins"] += 1
-            with open('records.json', 'w') as save:
-                json.dump(RECORD, save)
-            print(f'Wins: {RECORD["wins"]} | Losses: {RECORD["losses"]}')
-            quit()
+            CONTINUE = check_guess(guess_char, word_char, output_lst)
+            if CONTINUE == False:
+                print(f'You won! You figured out the word was "{WORDLE}"!')
+                RECORD["wins"] += 1
+                with open('records.json', 'w') as save:
+                    json.dump(RECORD, save)
+                print(f'Wins: {RECORD["wins"]} | Losses: {RECORD["losses"]}')
+                quit()
     elif GUESS_COUNT > 6:
         print(f'Game over! You used all 6 guesses. The correct word was "{WORDLE}"!')
         RECORD['losses'] += 1
