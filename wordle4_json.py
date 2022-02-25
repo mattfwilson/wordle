@@ -7,7 +7,7 @@ import random
 import json
 
 WORDLE = ''
-GUESS = ''
+GUESS = 'guess'
 CONTINUE = True
 GUESS_COUNT = 1
 RECORD = {}
@@ -55,11 +55,11 @@ with open("test_words.txt", "r") as possible_words: # get/create list out of 5-l
 while CONTINUE == True:
     if GUESS_COUNT <= 6:
         # checks to make sure the GUESS is 5 characters long
-        if len(GUESS) < 5 or len(GUESS) > 5:
-            print(f'Your guess word has to be five characters. haha')
+        if len(GUESS) < 5:
+            print(f'Your guess word has to be five characters. IF')
             GUESS = input(f'What is your GUESS? ({GUESS_COUNT}/6) ')
         elif len(GUESS) > 5:
-            print(f'Your GUESS word has to be five characters.')
+            print(f'Your GUESS word has to be five characters. ELIF1')
             GUESS = input(f'What is your guess? ({GUESS_COUNT}/6) ')
         else:
             GUESS = input(f'What is your guess? ({GUESS_COUNT}/6) ')
