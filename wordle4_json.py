@@ -37,7 +37,8 @@ def check_guess(guess, word, output_guess):
         word_index += 1
     print(f'Guess {GUESS_COUNT}: {output_guess}')
     GUESS_COUNT += 1
-    return correct_count != len(word)
+    return correct_count != len(word) # this equals False if all letters are not correct
+
 
 # loads historical record from external json file
 with open('records.json', 'r') as save:
@@ -55,13 +56,13 @@ while CONTINUE == True:
     if GUESS_COUNT <= 6:
         # checks to make sure the GUESS is 5 characters long
         if len(GUESS) < 5 or len(GUESS) > 5:
-            print(f'Your GUESS word has to be five characters.')
+            print(f'Your guess word has to be five characters. haha')
             GUESS = input(f'What is your GUESS? ({GUESS_COUNT}/6) ')
         elif len(GUESS) > 5:
             print(f'Your GUESS word has to be five characters.')
-            GUESS = input(f'What is your GUESS? ({GUESS_COUNT}/6) ')
+            GUESS = input(f'What is your guess? ({GUESS_COUNT}/6) ')
         else:
-            GUESS = input(f'What is your GUESS? ({GUESS_COUNT}/6) ')
+            GUESS = input(f'What is your guess? ({GUESS_COUNT}/6) ')
         
             word_char = []
             guess_char = []
@@ -74,6 +75,7 @@ while CONTINUE == True:
                 word_char.append(char)
 
             CONTINUE = check_guess(guess_char, word_char, output_lst)
+            print(CONTINUE)
             if CONTINUE == False:
                 print(f'You won! You figured out the word was "{WORDLE}"!')
                 RECORD["wins"] += 1
