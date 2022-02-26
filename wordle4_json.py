@@ -75,7 +75,6 @@ while CONTINUE == True:
                 word_char.append(char)
 
             CONTINUE = check_guess(guess_char, word_char, output_lst)
-            print(CONTINUE)
             if CONTINUE == False:
                 print(f'You won! You figured out the word was "{WORDLE}"!')
                 RECORD["wins"] += 1
