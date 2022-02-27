@@ -7,7 +7,7 @@ import random
 import json
 
 WORDLE = ''
-GUESS = 'guess'
+GUESS = ''
 CONTINUE = True
 GUESS_COUNT = 1
 RECORD = {}
@@ -39,7 +39,6 @@ def check_guess(guess, word, output_guess):
     GUESS_COUNT += 1
     return correct_count != len(word) # this equals False if all letters are not correct
 
-
 # loads historical record from external json file
 with open('records.json', 'r') as save:
      RECORD = json.load(save)
@@ -55,15 +54,12 @@ with open("test_words.txt", "r") as possible_words: # get/create list out of 5-l
 while CONTINUE == True:
     if GUESS_COUNT <= 6:
         # checks to make sure the GUESS is 5 characters long
+        GUESS = input(f'What is your GUESS? ({GUESS_COUNT}/6) ')
         if len(GUESS) < 5:
-            print(f'Your guess word has to be five characters. IF')
-            GUESS = input(f'What is your GUESS? ({GUESS_COUNT}/6) ')
+            print(f'Your guess word has to be five characters. Yours is too short!')
         elif len(GUESS) > 5:
-            print(f'Your GUESS word has to be five characters. ELIF1')
-            GUESS = input(f'What is your guess? ({GUESS_COUNT}/6) ')
+            print(f'Your GUESS word has to be five characters. Yours is too long!')
         else:
-            GUESS = input(f'What is your guess? ({GUESS_COUNT}/6) ')
-        
             word_char = []
             guess_char = []
             output_lst = []
