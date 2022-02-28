@@ -1,7 +1,6 @@
 # To-dos
 # check to see if two of the same character is in the GUESS
 # stacking the result summary (needs list of lists -Andres)
-# conditional check for < or > 5 characters not working after first guess
 
 import random
 import json
@@ -37,7 +36,7 @@ def check_guess(guess, word, output_guess):
         word_index += 1
     print(f'Guess {GUESS_COUNT}: {output_guess}')
     GUESS_COUNT += 1
-    return correct_count != len(word) # this equals False if all letters are not correct
+    return correct_count != len(word) # this equals False if all letters are not correct, otherwise True
 
 # loads historical record from external json file
 with open('records.json', 'r') as save:
@@ -54,25 +53,23 @@ with open("test_words.txt", "r") as possible_words: # get/create list out of 5-l
 while CONTINUE == True:
     if GUESS_COUNT <= 6:
         # checks to make sure the GUESS is 5 characters long
-        GUESS = input(f'What is your GUESS? ({GUESS_COUNT}/6) ')
+        GUESS = input(f'What is your guess? ({GUESS_COUNT}/6) ')
         if len(GUESS) < 5:
-            print(f'Your guess word has to be five characters. Yours is too short!')
+            print(f'Your guess word is too short! It has to be five characters.')
         elif len(GUESS) > 5:
-            print(f'Your GUESS word has to be five characters. Yours is too long!')
+            print(f'Your guess word is too long! It has to be five characters.')
         else:
             word_char = []
             guess_char = []
             output_lst = []
-
             for char in GUESS:
                 guess_char.append(char)
                 output_lst.append(char)
             for char in WORDLE:
                 word_char.append(char)
-
             CONTINUE = check_guess(guess_char, word_char, output_lst)
             if CONTINUE == False:
-                print(f'You won! You figured out the word was "{WORDLE}"!')
+                print(f'You won! You figured out the word is "{WORDLE}"!')
                 RECORD["wins"] += 1
                 with open('records.json', 'w') as save:
                     json.dump(RECORD, save)
