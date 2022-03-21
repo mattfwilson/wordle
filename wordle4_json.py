@@ -40,7 +40,7 @@ def check_guess(guess, word, output_guess):
 
 # loads historical record from external json file
 with open('records.json', 'r') as save:
-     RECORD = json.load(save)
+    RECORD = json.load(save)
 print(f'Wins: {RECORD["wins"]} | Losses: {RECORD["losses"]}')
 
 # loads external words list and randomly selects word from it
@@ -55,9 +55,9 @@ while CONTINUE == True:
         # checks to make sure the GUESS is 5 characters long
         GUESS = input(f'What is your guess? ({GUESS_COUNT}/6) ')
         if len(GUESS) < 5:
-            print(f'Your guess word is too short! It has to be five characters.')
+            print(f'Your guess is too short! It has to be five characters.')
         elif len(GUESS) > 5:
-            print(f'Your guess word is too long! It has to be five characters.')
+            print(f'Your guess is too long! It has to be five characters.')
         else:
             word_char = []
             guess_char = []
