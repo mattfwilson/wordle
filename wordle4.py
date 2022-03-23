@@ -36,7 +36,7 @@ def check_guess(guess, word, output_guess):
         word_index += 1
     print(f'Guess {GUESS_COUNT}: {output_guess}')
     GUESS_COUNT += 1
-    return correct_count != len(word) # this equals False if all letters are not correct, otherwise True
+    return correct_count != len(word) # this changes False if all letters are not correct, otherwise True
 
 # loads historical record from external json file
 with open('records.json', 'r') as save:
