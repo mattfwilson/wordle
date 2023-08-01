@@ -38,19 +38,19 @@ def check_guess(guess, word, output_guess):
     GUESS_COUNT += 1
     return correct_count != len(word) # this changes False if all letters are not correct, otherwise True
 
-# loads historical record from external json file
-with open('records.json', 'r') as save:
-    RECORD = json.load(save)
-print(f'Wins: {RECORD["wins"]} | Losses: {RECORD["losses"]}')
+# # loads historical record from external json file
+# with open('records.json', 'r') as save:
+#     RECORD = json.load(save)
+# print(f'Wins: {RECORD["wins"]} | Losses: {RECORD["losses"]}')
 
-# loads external words list and randomly selects word from it
-with open("test_words.txt", "r") as possible_words: # get/create list out of 5-letter-words.txt
-        file_lines = possible_words.read()
-        word_list = file_lines.split("\n")
-        WORDLE = random.choice(word_list)
+# # loads external words list and randomly selects word from it
+# with open("test_words.txt", "r") as possible_words: # get/create list out of 5-letter-words.txt
+#         file_lines = possible_words.read()
+#         word_list = file_lines.split("\n")
+#         WORDLE = random.choice(word_list)
 
 # continue running game while user still has available guesses
-while CONTINUE == True:
+while CONTINUE:
     if GUESS_COUNT <= 6:
         # checks to make sure the GUESS is 5 characters long
         GUESS = input(f'What is your guess? ({GUESS_COUNT}/6) ')
